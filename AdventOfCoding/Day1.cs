@@ -32,7 +32,8 @@ namespace AdventOfCoding
                     //We do not use sout anymore, we now use cw
                     Console.ForegroundColor = ConsoleColor.Red;
                     //This is called interpolation which Java does not have
-                    Console.WriteLine($"{Sum1} + {Sum2} are the values that equal 2020. {Sum1*Sum2} is the multiplication of both sums");
+                    Console.WriteLine(
+                        $"{Sum1} + {Sum2} are the values that equal 2020. {Sum1 * Sum2} is the multiplication of both sums");
                     return;
                 }
             }
@@ -43,7 +44,29 @@ namespace AdventOfCoding
     {
         public static void Start()
         {
-            
+            var input = "";
+            using var sr = new StreamReader("Input/Day1Input.txt");
+
+            input = sr.ReadToEnd().Replace("\r", "");
+            sr.Close();
+            var inputArray = input.Split("\n").Select(int.Parse).ToArray();
+
+            foreach (var Sum1 in inputArray)
+            {
+                foreach (var Sum2 in inputArray)
+                {
+                    foreach (var Sum3 in inputArray)
+                    {
+                        if (Sum1 + Sum2 + Sum3 != 2020) continue;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(
+                            $"{Sum1} + {Sum2} + {Sum3} are the values that equal 2020. {Sum1 * Sum2 * Sum3} is the multiplication of the three sums");
+                        return;
+                    }
+                    
+                }
+                
+            }
         }
     }
 }
